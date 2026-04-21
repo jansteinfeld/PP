@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // P_4pl
 NumericVector P_4pl(NumericVector delta, double alpha, double theta, double la, double ua);
 RcppExport SEXP _PP_P_4pl(SEXP deltaSEXP, SEXP alphaSEXP, SEXP thetaSEXP, SEXP laSEXP, SEXP uaSEXP) {

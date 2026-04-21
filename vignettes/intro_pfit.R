@@ -1,7 +1,7 @@
-## ----settings-----------------------------------------------------------------
+## ----settings--------------------------------------------------------------------------------------------------------
 knitr::opts_chunk$set(message = FALSE, results='hide')
 
-## ----start, message=FALSE, warning=FALSE--------------------------------------
+## ----start, message=FALSE, warning=FALSE-----------------------------------------------------------------------------
 library(PP)
 
 suppressWarnings(RNGversion("3.5.0"))
@@ -17,13 +17,13 @@ ua     <- round(runif(15,0.8,1),2)
 # simulate response matrix (not following any IRT model)
 awm <- matrix(sample(0:1,100*15,replace=TRUE),ncol=15)
 
-## ----1pl, message=FALSE, warning=FALSE----------------------------------------
+## ----1pl, message=FALSE, warning=FALSE-------------------------------------------------------------------------------
 # MLE
 res1plmle <- PP_4pl(respm = awm,thres = diffpar,type = "mle")
 # WLE
 res1plwle <- PP_4pl(respm = awm,thres = diffpar,type = "wle")
 
-## ----234-pl, message=FALSE, warning=FALSE-------------------------------------
+## ----234-pl, message=FALSE, warning=FALSE----------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------
 ## 2PL model #####
@@ -52,7 +52,7 @@ res4plmle <- PP_4pl(respm = awm,thres = diffpar,
 res4plwle <- PP_4pl(respm = awm,thres = diffpar,
                     slopes = sl,lowerA = la,upperA=ua,type = "wle")
 
-## ----pfit, message=FALSE, warning=FALSE---------------------------------------
+## ----pfit, message=FALSE, warning=FALSE------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------
 ## 1PL model #####
@@ -83,7 +83,7 @@ pfit4pl_lz <- Pfit(respm=awm,pp=res4plwle,fitindices="lzstar")
 ## LZ*-Index combined with Infit-Outfit #####
 pfit4pl_li <- Pfit(respm=awm,pp=res4plwle,fitindices=c("lzstar","infit","outfit"))
 
-## ----wle, message=FALSE, warning=FALSE----------------------------------------
+## ----wle, message=FALSE, warning=FALSE-------------------------------------------------------------------------------
 # ------------------------------------------------------------------------
 ## 1PL model #####
 # ------------------------------------------------------------------------
@@ -93,7 +93,7 @@ pfit1pl_mle_l <- Pfit(respm=awm,pp=res1plmle,fitindices="lzstar")
 ## wle ####
 pfit1pl_wle_l <- Pfit(respm=awm,pp=res1plwle,fitindices="lzstar")
 
-## ----example-1, message=FALSE, warning=FALSE----------------------------------
+## ----example-1, message=FALSE, warning=FALSE-------------------------------------------------------------------------
 # eine Grafik erzeugen
 
 res.pp <- Pfit(respm=awm,pp=res1plmle,fitindices=c("lzstar"),SE=TRUE)
@@ -119,7 +119,7 @@ plot(avg, x,
 arrows(avg-sdev, x, avg+sdev, length=0.05, angle=90, code=3)
 abline(v=0,col = "red", lwd = 3)
 
-## ----example-2, message=FALSE, warning=FALSE----------------------------------
+## ----example-2, message=FALSE, warning=FALSE-------------------------------------------------------------------------
 data(pp_amt)
 betas <- pp_amt$betas$Itemparameter
 diffpar <- pp_amt$Itemparameter

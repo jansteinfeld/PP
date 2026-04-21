@@ -155,51 +155,49 @@ pointer-events: auto;
 <h1>Analyzing a simulated data set</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(PP)</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code></pre></div>
-<pre><code>## Warning: package &#39;data.table&#39; was built under R version 4.5.3</code></pre>
-<pre><code>## data.table 1.18.2.1 using 2 threads (see ?getDTthreads).  Latest news: r-datatable.com</code></pre>
 <div id="first-example" class="section level2">
 <h2>First example</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">suppressWarnings</span>(<span class="fu">RNGversion</span>(<span class="st">&quot;3.5.0&quot;</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1526</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># intercepts</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>diffpar <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">3.6</span>,<span class="dv">3</span>,<span class="at">length=</span><span class="dv">15</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co"># slope parameters</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>sl     <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">15</span>,<span class="fl">0.5</span>,<span class="fl">1.5</span>),<span class="dv">2</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>la     <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">15</span>,<span class="dv">0</span>,<span class="fl">0.25</span>),<span class="dv">2</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>ua     <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">15</span>,<span class="fl">0.8</span>,<span class="dv">1</span>),<span class="dv">2</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>awm <span class="ot">&lt;-</span> PP<span class="sc">::</span><span class="fu">sim_4pl</span>(<span class="at">beta =</span> diffpar, <span class="at">alpha =</span> sl,</span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>                   <span class="at">lowerA =</span> la, <span class="at">upperA =</span> ua,</span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>                   <span class="at">theta =</span> <span class="fu">rnorm</span>(<span class="dv">200</span>))</span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>awm <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(awm)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">suppressWarnings</span>(<span class="fu">RNGversion</span>(<span class="st">&quot;3.5.0&quot;</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1526</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># intercepts</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>diffpar <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">3.6</span>,<span class="dv">3</span>,<span class="at">length=</span><span class="dv">15</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># slope parameters</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>sl     <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">15</span>,<span class="fl">0.5</span>,<span class="fl">1.5</span>),<span class="dv">2</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>la     <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">15</span>,<span class="dv">0</span>,<span class="fl">0.25</span>),<span class="dv">2</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>ua     <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">15</span>,<span class="fl">0.8</span>,<span class="dv">1</span>),<span class="dv">2</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>awm <span class="ot">&lt;-</span> PP<span class="sc">::</span><span class="fu">sim_4pl</span>(<span class="at">beta =</span> diffpar, <span class="at">alpha =</span> sl,</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>                   <span class="at">lowerA =</span> la, <span class="at">upperA =</span> ua,</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>                   <span class="at">theta =</span> <span class="fu">rnorm</span>(<span class="dv">200</span>))</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>awm <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(awm)</span></code></pre></div>
 <div id="estimating-and-using-person-parameters" class="section level3">
 <h3>Estimating and using person parameters</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">PPass</span>(<span class="at">respdf =</span> awm,<span class="at">thres =</span> diffpar,</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>             <span class="at">items=</span><span class="st">&quot;all&quot;</span>, <span class="at">mod=</span><span class="fu">c</span>(<span class="st">&quot;1PL&quot;</span>), </span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>             <span class="at">fitindices=</span><span class="fu">c</span>(<span class="st">&quot;lz&quot;</span>,<span class="st">&quot;lzstar&quot;</span>,<span class="st">&quot;infit&quot;</span>,<span class="st">&quot;outfit&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">PPass</span>(<span class="at">respdf =</span> awm,<span class="at">thres =</span> diffpar,</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>             <span class="at">items=</span><span class="st">&quot;all&quot;</span>, <span class="at">mod=</span><span class="fu">c</span>(<span class="st">&quot;1PL&quot;</span>), </span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>             <span class="at">fitindices=</span><span class="fu">c</span>(<span class="st">&quot;lz&quot;</span>,<span class="st">&quot;lzstar&quot;</span>,<span class="st">&quot;infit&quot;</span>,<span class="st">&quot;outfit&quot;</span>))</span></code></pre></div>
 <pre><code>## Estimating:  1pl model ... 
 ## type = wle 
 ## Estimation finished!</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># create a data.table</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>outdt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(out)</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>outdt[, ID <span class="sc">:=</span> <span class="dv">1</span><span class="sc">:</span>.N]</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>outdt[, roundest <span class="sc">:=</span> <span class="fu">factor</span>(<span class="fu">round</span>(estimate,<span class="dv">8</span>))]</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co"># Compute Percentile Ranks with the Person Parameters</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>outdtu <span class="ot">&lt;-</span> <span class="fu">unique</span>(outdt[,<span class="at">su :=</span> .N, <span class="at">keyby=</span>roundest], <span class="at">by=</span><span class="st">&quot;roundest&quot;</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>outdtu[,PR <span class="sc">:=</span><span class="fu">cumsum</span>(su)<span class="sc">/</span><span class="fu">sum</span>(su) <span class="sc">*</span> <span class="dv">100</span>]</span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>outdt <span class="ot">&lt;-</span> outdt[outdtu[,<span class="fu">list</span>(roundest,PR)],,on<span class="ot">=</span><span class="st">&quot;roundest&quot;</span>]</span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="fu">setorder</span>(outdt,ID)</span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>outdt[, <span class="fu">c</span>(<span class="st">&quot;su&quot;</span>) <span class="sc">:=</span> <span class="cn">NULL</span>]</span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co"># done</span></span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>outdt</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># create a data.table</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>outdt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(out)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>outdt[, ID <span class="sc">:=</span> <span class="dv">1</span><span class="sc">:</span>.N]</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>outdt[, roundest <span class="sc">:=</span> <span class="fu">factor</span>(<span class="fu">round</span>(estimate,<span class="dv">8</span>))]</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co"># Compute Percentile Ranks with the Person Parameters</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>outdtu <span class="ot">&lt;-</span> <span class="fu">unique</span>(outdt[,<span class="at">su :=</span> .N, <span class="at">keyby=</span>roundest], <span class="at">by=</span><span class="st">&quot;roundest&quot;</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>outdtu[,PR <span class="sc">:=</span><span class="fu">cumsum</span>(su)<span class="sc">/</span><span class="fu">sum</span>(su) <span class="sc">*</span> <span class="dv">100</span>]</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>outdt <span class="ot">&lt;-</span> outdt[outdtu[,<span class="fu">list</span>(roundest,PR)],,on<span class="ot">=</span><span class="st">&quot;roundest&quot;</span>]</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="fu">setorder</span>(outdt,ID)</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>outdt[, <span class="fu">c</span>(<span class="st">&quot;su&quot;</span>) <span class="sc">:=</span> <span class="cn">NULL</span>]</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co"># done</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>outdt</span></code></pre></div>
 <pre><code>##         estimate        SE        lz   lz_unst    lzstar    infit      in_t in_chisq in_df in_pv    outfit      ou_t
 ##            &lt;num&gt;     &lt;num&gt;     &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;num&gt;     &lt;num&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt;     &lt;num&gt;     &lt;num&gt;
 ##   1:  0.44208265 0.7122795 -1.123225 -0.566720 -1.131614 1.439156  1.137559   22.501    14 0.069  1.500033  0.799227
@@ -234,31 +232,31 @@ pointer-events: auto;
 <div id="second-example" class="section level2">
 <h2>Second example</h2>
 <p>Now there are two groups.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>awm <span class="ot">&lt;-</span> PP<span class="sc">::</span><span class="fu">sim_4pl</span>(<span class="at">beta =</span> diffpar, <span class="at">alpha =</span> sl, <span class="at">lowerA =</span> la, </span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>                   <span class="at">upperA =</span> ua, <span class="at">theta =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">500</span>),<span class="fu">rnorm</span>(<span class="dv">500</span>,<span class="fl">0.5</span>,<span class="fl">1.2</span>)))</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>awm <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(awm)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>awm <span class="ot">&lt;-</span> PP<span class="sc">::</span><span class="fu">sim_4pl</span>(<span class="at">beta =</span> diffpar, <span class="at">alpha =</span> sl, <span class="at">lowerA =</span> la, </span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>                   <span class="at">upperA =</span> ua, <span class="at">theta =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">500</span>),<span class="fu">rnorm</span>(<span class="dv">500</span>,<span class="fl">0.5</span>,<span class="fl">1.2</span>)))</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>awm <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(awm)</span></code></pre></div>
 <div id="estimating-and-using-person-parameters-1" class="section level3">
 <h3>Estimating and using person parameters</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">PPass</span>(<span class="at">respdf =</span> awm, <span class="at">thres =</span> diffpar, </span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>             <span class="at">items=</span><span class="st">&quot;all&quot;</span>, <span class="at">mod=</span><span class="fu">c</span>(<span class="st">&quot;1PL&quot;</span>), </span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>             <span class="at">fitindices=</span> <span class="fu">c</span>(<span class="st">&quot;lz&quot;</span>,<span class="st">&quot;lzstar&quot;</span>,<span class="st">&quot;infit&quot;</span>,<span class="st">&quot;outfit&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">PPass</span>(<span class="at">respdf =</span> awm, <span class="at">thres =</span> diffpar, </span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>             <span class="at">items=</span><span class="st">&quot;all&quot;</span>, <span class="at">mod=</span><span class="fu">c</span>(<span class="st">&quot;1PL&quot;</span>), </span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>             <span class="at">fitindices=</span> <span class="fu">c</span>(<span class="st">&quot;lz&quot;</span>,<span class="st">&quot;lzstar&quot;</span>,<span class="st">&quot;infit&quot;</span>,<span class="st">&quot;outfit&quot;</span>))</span></code></pre></div>
 <pre><code>## Estimating:  1pl model ... 
 ## type = wle 
 ## Estimation finished!</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>outdt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(out)</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>outdt[, ID <span class="sc">:=</span> <span class="dv">1</span><span class="sc">:</span>.N]</span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>outdt[, agegroup <span class="sc">:=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;young&quot;</span>,<span class="st">&quot;old&quot;</span>),<span class="at">each=</span><span class="dv">500</span>)]</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>outdt[, roundest <span class="sc">:=</span> <span class="fu">factor</span>(<span class="fu">round</span>(estimate,<span class="dv">8</span>))]</span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>outdtu <span class="ot">&lt;-</span> <span class="fu">unique</span>(outdt[,<span class="at">su :=</span> .N, <span class="at">keyby=</span><span class="fu">c</span>(<span class="st">&quot;agegroup&quot;</span>,<span class="st">&quot;roundest&quot;</span>)], <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;agegroup&quot;</span>,<span class="st">&quot;roundest&quot;</span>))[,PR <span class="sc">:=</span><span class="fu">cumsum</span>(su)<span class="sc">/</span><span class="fu">sum</span>(su) <span class="sc">*</span> <span class="dv">100</span>, by<span class="ot">=</span>agegroup]</span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>outdt <span class="ot">&lt;-</span> outdt[outdtu[,<span class="fu">list</span>(agegroup,roundest,PR)],,on<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;agegroup&quot;</span>,<span class="st">&quot;roundest&quot;</span>)]</span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="fu">setorder</span>(outdt,ID)</span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>outdt[, <span class="fu">c</span>(<span class="st">&quot;su&quot;</span>) <span class="sc">:=</span> <span class="cn">NULL</span>]</span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>outdt</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>outdt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(out)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>outdt[, ID <span class="sc">:=</span> <span class="dv">1</span><span class="sc">:</span>.N]</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>outdt[, agegroup <span class="sc">:=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;young&quot;</span>,<span class="st">&quot;old&quot;</span>),<span class="at">each=</span><span class="dv">500</span>)]</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>outdt[, roundest <span class="sc">:=</span> <span class="fu">factor</span>(<span class="fu">round</span>(estimate,<span class="dv">8</span>))]</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>outdtu <span class="ot">&lt;-</span> <span class="fu">unique</span>(outdt[,<span class="at">su :=</span> .N, <span class="at">keyby=</span><span class="fu">c</span>(<span class="st">&quot;agegroup&quot;</span>,<span class="st">&quot;roundest&quot;</span>)], <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;agegroup&quot;</span>,<span class="st">&quot;roundest&quot;</span>))[,PR <span class="sc">:=</span><span class="fu">cumsum</span>(su)<span class="sc">/</span><span class="fu">sum</span>(su) <span class="sc">*</span> <span class="dv">100</span>, by<span class="ot">=</span>agegroup]</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>outdt <span class="ot">&lt;-</span> outdt[outdtu[,<span class="fu">list</span>(agegroup,roundest,PR)],,on<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;agegroup&quot;</span>,<span class="st">&quot;roundest&quot;</span>)]</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="fu">setorder</span>(outdt,ID)</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>outdt[, <span class="fu">c</span>(<span class="st">&quot;su&quot;</span>) <span class="sc">:=</span> <span class="cn">NULL</span>]</span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>outdt</span></code></pre></div>
 <pre><code>##          estimate        SE        lz   lz_unst    lzstar    infit      in_t in_chisq in_df in_pv   outfit      ou_t
 ##             &lt;num&gt;     &lt;num&gt;     &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;num&gt;     &lt;num&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt;    &lt;num&gt;     &lt;num&gt;
 ##    1: -0.54648017 0.7073232  0.283532 -0.380108  0.283535 0.914011 -0.101851   10.597    14 0.717 0.706459 -0.210120

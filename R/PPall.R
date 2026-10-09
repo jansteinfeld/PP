@@ -166,7 +166,12 @@ if( (any(is.null(mu)) | any(is.null(sigma2))))
 if(type=="mle" | type=="robust")
   {
     resPPx <- ansol(respm,maxsc)  
-    respm <- respm[!is.na(resPPx[,2]),]
+    keep <- !is.na(resPPx[,2])
+    respm <- respm[keep,,drop=FALSE]
+    # keep the per-person vectors aligned with the remaining persons
+    theta_start <- theta_start[keep]
+    if(length(mu) == length(keep)) mu <- mu[keep]
+    if(length(sigma2) == length(keep)) sigma2 <- sigma2[keep]
   }
 
 
@@ -178,6 +183,9 @@ if(cont$killdupli)
   # this vector contains the indices, to recreate the large matrix in the end of the estimation
   dupvec <- make_dup(respm)
   respm <- respm[dupvec$ndpat,,drop=FALSE]
+  theta_start <- theta_start[dupvec$ndpat]
+  if(length(mu) == length(dupvec$ndpat)) mu <- mu[dupvec$ndpat]
+  if(length(sigma2) == length(dupvec$ndpat)) sigma2 <- sigma2[dupvec$ndpat]
   }
 
 
